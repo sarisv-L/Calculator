@@ -2,8 +2,11 @@
 
 let firstNum = 0;
 let secondNum = 0;
+let dispNum = '';
+
 const disp = document.querySelector('.display');
 const buttons = document.querySelectorAll('button');
+const clear = document.querySelector('#clear');
 
 const operators = ['+', '-', '*', '/'];
 
@@ -38,13 +41,20 @@ function operate(firstNum, secondNum, op) {
 
 const content = document.createElement('div');
 content.classList.add('content');
-content.textContent = '0';
+content.textContent = dispNum;
 disp.appendChild(content);
 
 // Iterate through each button
 buttons.forEach(button => {
   // and for each one we add a 'click' listener
   button.addEventListener('click', () => {
-    alert(button.textContent);
+    dispNum += button.textContent;
+    content.textContent = dispNum;
+    console.log(dispNum);
   });
+});
+
+clear.addEventListener('click', () => {
+  content.textContent = '';
+  dispNum = '';
 });
