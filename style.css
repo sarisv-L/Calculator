@@ -2,25 +2,29 @@ h1 {
   display: flex;
   justify-content: center;
   font-weight: bold;
-  color: green;
+  color: rgb(14, 116, 232);
 }
 
 #calculator {
   display: flex;
-  align-items: center;
-  flex-direction: column;
+  flex-wrap: wrap;
+  /* align-items: center; */
   width: 300px;
   height: 400px;
-  /* display: flex; */
-  background-color: rgb(32, 32, 32);
+  background-color: rgb(60, 60, 60);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-direction: row-reverse;
 }
 
 .display {
-  margin-top: 5px;
-  margin-bottom: 5px;
+  flex: 1;
+  margin: 10px;
   display: flex;
   justify-content: center;
-  width: 280px;
   height: 60px;
   background-color: rgb(230, 230, 230);
 }
@@ -28,11 +32,11 @@ h1 {
 #operator {
   display: flex;
   flex-direction: column;
-  align-self: flex-end;
-  margin-right: 10px;
+  margin: 10px;
 }
 
 .op {
+  /* flex: 1; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,8 +44,35 @@ h1 {
   font-weight: 900;
   font-size: 1.2rem;
   background-color: rgb(209, 152, 21);
-  border-radius: 5px;
-  width: 50px;
-  border-radius: 5px;
+  width: 55px;
+  border-radius: 100%;
   aspect-ratio: 1/1;
+}
+
+.mul {
+  padding-top: 10px;
+  /* align-self: baseline; */
+}
+
+.digits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* align-items: center; */
+  margin: 10px;
+}
+
+.dig,
+.zero {
+  /* display: flex; */
+
+  width: 65px;
+  height: 65px;
+  border-radius: 100%;
+  font-size: 25px;
+}
+
+.zero {
+  flex: 2;
+  border-radius: 75%;
 }
