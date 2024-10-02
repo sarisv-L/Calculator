@@ -2,6 +2,9 @@
 
 let firstNum = 0;
 let secondNum = 0;
+const disp = document.querySelector('.display');
+const buttons = document.querySelectorAll('button');
+
 const operators = ['+', '-', '*', '/'];
 
 function add(a, b) {
@@ -30,3 +33,18 @@ function operate(firstNum, secondNum, op) {
     return divide(firstNum, secondNum);
   }
 }
+
+// const container = document.querySelector(".container");
+
+const content = document.createElement('div');
+content.classList.add('content');
+content.textContent = '0';
+disp.appendChild(content);
+
+// Iterate through each button
+buttons.forEach(button => {
+  // and for each one we add a 'click' listener
+  button.addEventListener('click', () => {
+    alert(button.textContent);
+  });
+});
