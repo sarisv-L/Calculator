@@ -31,13 +31,9 @@ numberButtons.forEach(button => {
 });
 
 function appendNumber(number) {
+  if (number === '.' && currentNumberText.textContent.includes('.')) return;
   if (currentNumberText.textContent === '0' || resetDisplay) resetScreen();
   currentNumberText.textContent += number;
-  if (
-    currentNumberText.textContent === '.' &&
-    currentNumberText.textContent.includes('.')
-  )
-    return;
 }
 
 function resetScreen() {
@@ -50,7 +46,6 @@ function setOperation(operator) {
   prevValue = currentNumberText.textContent;
   currOperation = operator;
   previousNumberText.textContent = `${prevValue} ${currOperation}`;
-  // currentNumberText.textContent = '';
   resetDisplay = true;
 }
 
@@ -60,14 +55,14 @@ function roundResult(number) {
 
 function evaluate() {
   currValue = currentNumberText.textContent;
+
   previousNumberText.textContent = `${prevValue} ${currOperation} ${currValue} =`;
 
   currentNumberText.textContent = roundResult(
     operate(prevValue, currValue, currOperation),
   );
-  currOperation = null;
 
-  // currentNumberText.textContent = operate(currValue, prevValue, currOperation);
+  currOperation = null;
 }
 
 function add(a, b) {
