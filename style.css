@@ -1,4 +1,10 @@
+body {
+  font-family: Verdana, sans-serif;
+}
+
 h1 {
+  display: flex;
+  justify-content: center;
   font-weight: bold;
   color: rgb(14, 116, 232);
 }
@@ -19,20 +25,35 @@ h1 {
   border-radius: 10px;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  flex-direction: row-reverse;
-}
-
 .display {
   flex: 1;
   margin: 10px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: end;
   height: 60px;
   background-color: rgb(230, 230, 230);
   border-radius: 10px;
+}
+
+.previous-number,
+.current-number {
+  margin-right: 5px;
+}
+
+.previous-number {
+  font-size: 1rem;
+}
+
+.current-number {
+  font-size: 2rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-direction: row-reverse;
 }
 
 #operator {
@@ -41,6 +62,7 @@ h1 {
   margin: 10px;
 }
 
+#equal,
 .op {
   /* flex: 1; */
   display: flex;
@@ -56,7 +78,7 @@ h1 {
 }
 
 .mul {
-  padding-top: 10px;
+  padding-top: 15px;
   /* align-self: baseline; */
 }
 
@@ -75,14 +97,6 @@ h1 {
   height: 65px;
   border-radius: 100%;
   font-size: 25px;
-}
-
-.content {
-  font-size: 50px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  color: rgb(14, 116, 232);
 }
 
 /* .zero {

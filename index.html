@@ -11,31 +11,40 @@
     <div class="main-cont">
     
     <div id="calculator">
-      <div class="display"></div>
+      <div class="display">
+        <div data-previous-number class="previous-number"></div>
+        <div data-current-number class="current-number"></div>
+      </div>
       <div class="container">
         <div id="operator">
-          <button class="add op">+</button>
-          <button class="sub op">-</button>
-          <button class="mul op">*</button>
-          <button class="div op">/</button>
-          <button class="eq op">=</button>
+        
+          <button class="op" data-operation>+</button>
+          <button class="op" data-operation>-</button>
+          <button class="op mul" data-operation>*</button>
+          <button class="op" data-operation>/</button>
+          <button id="equal" data-equals >=</button>
         </div>
+        
         <div class="digits">
-          <button class="dig">9</button>
-          <button class="dig">8</button>
-          <button class="dig">7</button>
-          <button class="dig">6</button>
-          <button class="dig">5</button>
-          <button class="dig">4</button>
-          <button class="dig">3</button>
-          <button class="dig">2</button>
-          <button class="dig">1</button>
-          <button class="dig">0</button>
-          <button class="dig">.</button>
-          <button id="clear" class="dig">AC</button>
+          <button class="dig" data-number>9</button>
+          <button class="dig" data-number>8</button>
+          <button class="dig" data-number>7</button>
+          <button class="dig" data-number>6</button>
+          <button class="dig" data-number>5</button>
+          <button class="dig" data-number>4</button>
+          <button class="dig" data-number>3</button>
+          <button class="dig" data-number>2</button>
+          <button class="dig" data-number>1</button>
+          <button class="dig" data-number>0</button>
+          <button class="dig" data-number>.</button>
+          <button class="dig" data-all-clear>AC</button>
+        </div>
        
-      </div>
+      
     </div>
+
+    
+
   </div>
     <script src="script.js"></script>
   </body>

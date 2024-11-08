@@ -1,17 +1,77 @@
 'use strict';
+let currValue = '';
+let prevValue = '';
+let currOperation = null;
+let resetDisplay = false;
+const numberButtons = document.querySelectorAll('[data-number]');
+const operationButtons = document.querySelectorAll('[data-operation]');
+const clearButton = document.querySelector('[data-all-clear]');
+const equalsButton = document.querySelector('[data-equals]');
+const previousNumberText = document.querySelector('[data-previous-number]');
+const currentNumberText = document.querySelector('[data-current-number]');
+currentNumberText.textContent = '0';
 
-let firstNum = 0;
-let secondNum = 0;
-let dispNum = '';
+equalsButton.addEventListener('click', evaluate);
+clearButton.addEventListener('click', clear);
 
-const disp = document.querySelector('.display');
-const buttons = document.querySelectorAll('button');
-const clear = document.querySelector('#clear');
+function clear() {
+  currentNumberText.textContent = '0';
+  previousNumberText.textContent = '';
+  currValue = '';
+  prevValue = '';
+  currOperation = null;
+}
 
-const operators = ['+', '-', '*', '/'];
+operationButtons.forEach(button => {
+  button.addEventListener('click', () => setOperation(button.textContent));
+});
+numberButtons.forEach(button => {
+  // and for each one we add a Event listener
+  button.addEventListener('click', () => appendNumber(button.textContent));
+});
+
+function appendNumber(number) {
+  if (currentNumberText.textContent === '0' || resetDisplay) resetScreen();
+  currentNumberText.textContent += number;
+  if (
+    currentNumberText.textContent === '.' &&
+    currentNumberText.textContent.includes('.')
+  )
+    return;
+}
+
+function resetScreen() {
+  currentNumberText.textContent = '';
+  resetDisplay = false;
+}
+
+function setOperation(operator) {
+  if (currOperation !== null) evaluate();
+  prevValue = currentNumberText.textContent;
+  currOperation = operator;
+  previousNumberText.textContent = `${prevValue} ${currOperation}`;
+  // currentNumberText.textContent = '';
+  resetDisplay = true;
+}
+
+function roundResult(number) {
+  return Math.round(number * 1000) / 1000;
+}
+
+function evaluate() {
+  currValue = currentNumberText.textContent;
+  previousNumberText.textContent = `${prevValue} ${currOperation} ${currValue} =`;
+
+  currentNumberText.textContent = roundResult(
+    operate(prevValue, currValue, currOperation),
+  );
+  currOperation = null;
+
+  // currentNumberText.textContent = operate(currValue, prevValue, currOperation);
+}
 
 function add(a, b) {
-  return a + b;
+  return Number(a) + Number(b);
 }
 function subtract(a, b) {
   return a - b;
@@ -22,39 +82,18 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-  return a / b;
+  if (b === 0) return null;
+  else return a / b;
 }
 
-function operate(firstNum, secondNum, op) {
-  if (op === operators[0]) {
-    return add(firstNum, secondNum);
-  } else if (op === operators[1]) {
-    return subtract(firstNum, secondNum);
-  } else if (op === operators[2]) {
-    return multiply(firstNum, secondNum);
-  } else if (op === operators[3]) {
-    return divide(firstNum, secondNum);
+function operate(a, b, op) {
+  if (op === '+') {
+    return add(a, b);
+  } else if (op === '-') {
+    return subtract(a, b);
+  } else if (op === '*') {
+    return multiply(a, b);
+  } else if (op === '/') {
+    return divide(a, b);
   }
 }
-
-// const container = document.querySelector(".container");
-
-const content = document.createElement('div');
-content.classList.add('content');
-content.textContent = dispNum;
-disp.appendChild(content);
-
-// Iterate through each button
-buttons.forEach(button => {
-  // and for each one we add a 'click' listener
-  button.addEventListener('click', () => {
-    dispNum += button.textContent;
-    content.textContent = dispNum;
-    console.log(dispNum);
-  });
-});
-
-clear.addEventListener('click', () => {
-  content.textContent = '';
-  dispNum = '';
-});
